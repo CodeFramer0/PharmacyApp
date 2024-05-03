@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -21,11 +22,11 @@ namespace WinFormsApp1
         }
 
 
-        public void CreateUser(string login, string password,string full_name)
+        public void CreateUser(string login, string password, string full_name)
         {
             SQLiteConnection connection = createConnection();
             connection.Open();
-            var query = $"INSERT OR IGNORE INTO Users(login,password,full_name) VALUES ('{login}','{password}','{full_name}')";
+            string query = $"INSERT OR IGNORE INTO Users(login,password,full_name) VALUES ('{login}','{password}','{full_name}')";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 command.ExecuteNonQuery();
@@ -41,12 +42,16 @@ namespace WinFormsApp1
             SQLiteDataReader reader = command.ExecuteReader();
             if (reader.Read())
             {
+                reader.Close();
+                connection.Close();
                 return true;
             }
+            reader.Close();
+            connection.Close();
             return false;
         }
 
-       public void CreateBuyer(string full_name)
+        public void CreateBuyer(string full_name)
         {
             SQLiteConnection connection = createConnection();
             connection.Open();
@@ -56,8 +61,8 @@ namespace WinFormsApp1
                 command.ExecuteNonQuery();
             }
         }
-        
-        public void CreateOffer(string date,string number,string list,string sum)
+
+        public void CreateOffer(string date, string number, string list, string sum)
         {
             SQLiteConnection connection = createConnection();
             connection.Open();
@@ -72,11 +77,65 @@ namespace WinFormsApp1
         {
             SQLiteConnection connection = createConnection();
             connection.Open();
-            var query = $"INSERT OR IGNORE INTO People(full_name,phone) VALUES ('{full_name}','{phone}')";
+            string query = $"INSERT OR IGNORE INTO People(full_name,phone) VALUES ('{full_name}','{phone}')";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 command.ExecuteNonQuery();
             }
+        }
+        
+        private bool ProductInCart(int product_id)
+        {
+            SQLiteConnection connection = createConnection();
+            connection.Open();
+            string query = $"select * from Carts where id='{product_id}'";
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                reader.Close();
+                connection.Close();
+                return true;
+            }
+            reader.Close();
+            connection.Close();
+            return false;
+
+        }
+        public Dictionary<string, string> GetProduct (int product_id)
+        {
+            var product = new Dictionary<string, string>();
+            SQLiteConnection connection = createConnection();
+            connection.Open();
+            string query = $"select product_id,name,price from Products where product_id='{product_id}'";
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                product.Add("id", reader[0].ToString());
+                product.Add("name", reader[1].ToString());
+                product.Add("price", reader[2].ToString());
+                reader.Close();
+                connection.Close();
+               
+            }
+            reader.Close();
+            connection.Close();
+            return product;
+           
+
+        }
+        public void AddBuyToCart(string cart_item)
+        { 
+            SQLiteConnection connection = createConnection();
+            connection.Open();
+            string query = $"INSERT OR IGNORE INTO Carts(cart_item,count) VALUES ('{cart_item}','{1}')";
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+            connection.Close();
+
         }
 
     }
