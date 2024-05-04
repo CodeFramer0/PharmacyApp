@@ -58,7 +58,7 @@ namespace WinFormsApp2
             var list = textBox2.Text;
             var sum = textBox3.Text;
             db database = new();
-            database.CreateOffer(date, number, list, sum);
+            
             LoadGrid();
         }
     }

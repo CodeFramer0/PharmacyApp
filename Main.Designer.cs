@@ -42,27 +42,15 @@
             label4 = new Label();
             button3 = new Button();
             pictureBox3 = new PictureBox();
-            label5 = new Label();
-            button4 = new Button();
-            pictureBox4 = new PictureBox();
-            label6 = new Label();
-            button5 = new Button();
-            pictureBox5 = new PictureBox();
-            label7 = new Label();
-            button6 = new Button();
-            pictureBox6 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
-            pictureBox1.ImageLocation = "https://apteka-kartinki.ru/wa-data/public/shop/products/36/56/25636/images/45520/45520.300x0.jpg";
+            pictureBox1.ImageLocation = "https://12bb6ecf-bda5-4c99-816b-12bda79f6bd9.selcdn.net/upload//Photo_Tovar/1457400.jpg";
             pictureBox1.Location = new Point(12, 46);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(176, 134);
@@ -74,12 +62,13 @@
             // button16
             // 
             button16.ForeColor = SystemColors.ControlText;
-            button16.Location = new Point(800, 247);
+            button16.Location = new Point(800, 313);
             button16.Name = "button16";
             button16.Size = new Size(348, 50);
             button16.TabIndex = 32;
             button16.Text = "Оформить заказ";
             button16.UseVisualStyleBackColor = true;
+            button16.Click += button16_Click;
             // 
             // button1
             // 
@@ -144,9 +133,9 @@
             label3.ForeColor = SystemColors.ControlLightLight;
             label3.Location = new Point(266, 183);
             label3.Name = "label3";
-            label3.Size = new Size(216, 42);
+            label3.Size = new Size(201, 42);
             label3.TabIndex = 39;
-            label3.Text = "Бронхо-мунал капс 7мг N 10\r\nЦена: 664₽";
+            label3.Text = "Гептрал тб п/о 400мг N 20\r\nЦена: 1521₽";
             // 
             // button2
             // 
@@ -163,7 +152,7 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.ImageLocation = "https://apteka-kartinki.ru/wa-data/public/shop/products/36/56/25636/images/45520/45520.300x0.jpg";
+            pictureBox2.ImageLocation = "https://12bb6ecf-bda5-4c99-816b-12bda79f6bd9.selcdn.net/upload//Photo_Tovar/1192600_1711540963.jpg";
             pictureBox2.Location = new Point(266, 46);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(176, 134);
@@ -197,7 +186,7 @@
             // 
             // pictureBox3
             // 
-            pictureBox3.ImageLocation = "https://apteka-kartinki.ru/wa-data/public/shop/products/36/56/25636/images/45520/45520.300x0.jpg";
+            pictureBox3.ImageLocation = "https://12bb6ecf-bda5-4c99-816b-12bda79f6bd9.selcdn.net/upload//Photo_Tovar/1864700.jpg";
             pictureBox3.Location = new Point(510, 46);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(176, 134);
@@ -205,123 +194,12 @@
             pictureBox3.TabIndex = 40;
             pictureBox3.TabStop = false;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.ForeColor = SystemColors.ControlLightLight;
-            label5.Location = new Point(510, 450);
-            label5.Name = "label5";
-            label5.Size = new Size(216, 42);
-            label5.TabIndex = 51;
-            label5.Text = "Бронхо-мунал капс 7мг N 10\r\nЦена: 664₽";
-            // 
-            // button4
-            // 
-            button4.ForeColor = SystemColors.ControlText;
-            button4.ImeMode = ImeMode.NoControl;
-            button4.Location = new Point(510, 514);
-            button4.Name = "button4";
-            button4.Size = new Size(176, 30);
-            button4.TabIndex = 50;
-            button4.Tag = "6";
-            button4.Text = "В корзину";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += add_to_cart;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.ImageLocation = "https://apteka-kartinki.ru/wa-data/public/shop/products/36/56/25636/images/45520/45520.300x0.jpg";
-            pictureBox4.Location = new Point(510, 313);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(176, 134);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 49;
-            pictureBox4.TabStop = false;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.ForeColor = SystemColors.ControlLightLight;
-            label6.Location = new Point(266, 450);
-            label6.Name = "label6";
-            label6.Size = new Size(216, 42);
-            label6.TabIndex = 48;
-            label6.Text = "Бронхо-мунал капс 7мг N 10\r\nЦена: 664₽";
-            // 
-            // button5
-            // 
-            button5.ForeColor = SystemColors.ControlText;
-            button5.ImeMode = ImeMode.NoControl;
-            button5.Location = new Point(266, 514);
-            button5.Name = "button5";
-            button5.Size = new Size(176, 30);
-            button5.TabIndex = 47;
-            button5.Tag = "5";
-            button5.Text = "В корзину";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += add_to_cart;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.ImageLocation = "https://apteka-kartinki.ru/wa-data/public/shop/products/36/56/25636/images/45520/45520.300x0.jpg";
-            pictureBox5.Location = new Point(266, 313);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(176, 134);
-            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox5.TabIndex = 46;
-            pictureBox5.TabStop = false;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.ForeColor = SystemColors.ControlLightLight;
-            label7.Location = new Point(12, 450);
-            label7.Name = "label7";
-            label7.Size = new Size(216, 42);
-            label7.TabIndex = 45;
-            label7.Text = "Бронхо-мунал капс 7мг N 10\r\nЦена: 664₽";
-            // 
-            // button6
-            // 
-            button6.ForeColor = SystemColors.ControlText;
-            button6.ImeMode = ImeMode.NoControl;
-            button6.Location = new Point(12, 514);
-            button6.Name = "button6";
-            button6.Size = new Size(176, 30);
-            button6.TabIndex = 44;
-            button6.Tag = "4";
-            button6.Text = "В корзину";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += add_to_cart;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.ImageLocation = "https://apteka-kartinki.ru/wa-data/public/shop/products/36/56/25636/images/45520/45520.300x0.jpg";
-            pictureBox6.Location = new Point(12, 313);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(176, 134);
-            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox6.TabIndex = 43;
-            pictureBox6.TabStop = false;
-            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSlateGray;
             ClientSize = new Size(1151, 681);
-            Controls.Add(label5);
-            Controls.Add(button4);
-            Controls.Add(pictureBox4);
-            Controls.Add(label6);
-            Controls.Add(button5);
-            Controls.Add(pictureBox5);
-            Controls.Add(label7);
-            Controls.Add(button6);
-            Controls.Add(pictureBox6);
             Controls.Add(label4);
             Controls.Add(button3);
             Controls.Add(pictureBox3);
@@ -341,9 +219,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -374,14 +249,5 @@
         private Label label4;
         private Button button3;
         private PictureBox pictureBox3;
-        private Label label5;
-        private Button button4;
-        private PictureBox pictureBox4;
-        private Label label6;
-        private Button button5;
-        private PictureBox pictureBox5;
-        private Label label7;
-        private Button button6;
-        private PictureBox pictureBox6;
     }
 }

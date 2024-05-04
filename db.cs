@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,6 @@ namespace WinFormsApp1
 {
     public class db
     {
-
 
         public SQLiteConnection createConnection()
         {
@@ -108,6 +108,47 @@ namespace WinFormsApp1
             connection.Close();
             
 
+        }
+        public List<string[]> GetCart()
+        {
+            List<string[]> data = new List<string[]>();
+            SQLiteConnection connection = createConnection();
+            connection.Open();
+            string query = "SELECT Products.name AS \"Название товара\"," +
+                " Products.price AS \"Цена товара\"," +
+                " COALESCE(Carts.count, 0) AS \"Количество товаров\"" +
+                " FROM Products INNER JOIN ( SELECT cart_item, SUM(count)" +
+                " AS count FROM Carts GROUP BY cart_item )" +
+                " AS Carts ON Products.product_id = Carts.cart_item;";
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                data.Add(new string[3]);
+                data[data.Count - 1][0] = reader[0].ToString();
+                data[data.Count - 1][1] = reader[1].ToString() + " руб";
+                data[data.Count - 1][2] = reader[2].ToString() + " товар(ов)";
+
+
+
+
+
+
+            }
+            reader.Close();
+            connection.Close();
+            return data;
+        }
+        public void ClearCart()
+        {
+            SQLiteConnection connection = createConnection();
+            connection.Open();
+            string query = $"DELETE FROM Carts";
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+            connection.Close();
         }
 
     }

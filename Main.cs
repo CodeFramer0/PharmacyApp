@@ -20,32 +20,8 @@ namespace WinFormsApp2
 
 
 
-            SQLiteConnection connection = database.createConnection();
-            connection.Open();
-            string query = "SELECT Products.name AS \"Название товара\"," +
-                " Products.price AS \"Цена товара\"," +
-                " COALESCE(Carts.count, 0) AS \"Количество товаров\"" +
-                " FROM Products INNER JOIN ( SELECT cart_item, SUM(count)" +
-                " AS count FROM Carts GROUP BY cart_item )" +
-                " AS Carts ON Products.product_id = Carts.cart_item;";
-            SQLiteCommand command = new SQLiteCommand(query, connection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            List<string[]> data = new List<string[]>();
-            while (reader.Read())
-            {
-                data.Add(new string[3]);
-                data[data.Count - 1][0] = reader[0].ToString();
-                data[data.Count - 1][1] = reader[1].ToString()+" руб";
-                data[data.Count - 1][2] = reader[2].ToString()+" товар(ов)";
-
-
-
-
-
-
-            }
-            reader.Close();
-            connection.Close();
+            var data = database.GetCart();
+           
             foreach (string[] s in data)
             {
                 dataGridView1.Rows.Add(s);
@@ -72,7 +48,7 @@ namespace WinFormsApp2
         {
             db database = new();
             Button b = (Button)sender;
-            Dictionary<string,string> product = database.GetProduct(Int32.Parse(b.Tag.ToString()));
+            Dictionary<string, string> product = database.GetProduct(Int32.Parse(b.Tag.ToString()));
             database.AddBuyToCart(product["id"]);
             LoadGrid();
         }
@@ -85,6 +61,14 @@ namespace WinFormsApp2
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ваш заказ успешно оформлен, мы сообщим Вам в СМС, когда он будет готов к выдаче!");
+            db database = new();
+            database.ClearCart();
+            LoadGrid();
         }
     }
 }
