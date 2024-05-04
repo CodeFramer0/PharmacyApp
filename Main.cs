@@ -27,7 +27,7 @@ namespace WinFormsApp2
                 " COALESCE(Carts.count, 0) AS \"Количество товаров\"" +
                 " FROM Products INNER JOIN ( SELECT cart_item, SUM(count)" +
                 " AS count FROM Carts GROUP BY cart_item )" +
-                " AS Carts ON Products.id = Carts.cart_item;";
+                " AS Carts ON Products.product_id = Carts.cart_item;";
             SQLiteCommand command = new SQLiteCommand(query, connection);
             SQLiteDataReader reader = command.ExecuteReader();
             List<string[]> data = new List<string[]>();

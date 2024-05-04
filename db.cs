@@ -62,17 +62,6 @@ namespace WinFormsApp1
             }
         }
 
-        public void CreateOffer(string date, string number, string list, string sum)
-        {
-            SQLiteConnection connection = createConnection();
-            connection.Open();
-            var query = $"INSERT OR IGNORE INTO Offers(date,Number,list,sum) VALUES ('{date}','{number}','{list}','{sum}')";
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
-            {
-                command.ExecuteNonQuery();
-            }
-        }
-
         public void CreatePeople(string full_name, string phone)
         {
             SQLiteConnection connection = createConnection();
@@ -84,24 +73,6 @@ namespace WinFormsApp1
             }
         }
         
-        private bool ProductInCart(int product_id)
-        {
-            SQLiteConnection connection = createConnection();
-            connection.Open();
-            string query = $"select * from Carts where id='{product_id}'";
-            SQLiteCommand command = new SQLiteCommand(query, connection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            if (reader.Read())
-            {
-                reader.Close();
-                connection.Close();
-                return true;
-            }
-            reader.Close();
-            connection.Close();
-            return false;
-
-        }
         public Dictionary<string, string> GetProduct (int product_id)
         {
             var product = new Dictionary<string, string>();
@@ -135,6 +106,7 @@ namespace WinFormsApp1
                 command.ExecuteNonQuery();
             }
             connection.Close();
+            
 
         }
 
